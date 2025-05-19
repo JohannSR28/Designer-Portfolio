@@ -1,0 +1,172 @@
+/* SummaryBloc.module.css - CSS complet */
+
+.container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #333;
+}
+
+.blockContainer {
+  position: relative;
+  width: 100%;
+  border: 1px solid #444;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.responsiveContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  height: auto;
+  background-color: #000;
+}
+
+.positionedBlockAbsolute {
+  position: absolute;
+}
+
+.positionedBlockRelative {
+  position: relative;
+  left: 0;
+  top: 0;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* Style pour les blocs complexes - rendre le bloc entier cliquable */
+.complexBlock {
+  padding: 16px;
+  border: 2px solid #000;
+  border-radius: 8px;
+  background-color: #000;
+  color: white;
+  display: inline-block;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  transform: scale(1);
+  cursor: pointer; /* Indique que le bloc est cliquable */
+}
+
+.complexBlock:hover {
+  border-color: #fff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+.complexBlockResponsive {
+  max-width: 100%;
+  width: 100%;
+}
+
+.complexBlockTitle {
+  font-weight: bold;
+  margin-right: 8px;
+  font-size: 1.2rem;
+}
+
+.complexBlockName {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.linksList {
+  padding-left: 20px;
+  margin: 10px 0;
+  list-style-type: none;
+}
+
+.linkItem {
+  margin: 8px 0;
+}
+
+/* Style pour le texte dans les éléments de liste */
+.linkText {
+  color: #ccc;
+  transition: color 0.2s ease;
+}
+
+.complexBlock:hover .linkText {
+  color: #fff;
+}
+
+/* Suppression des boutons, remplacés par du texte normal */
+.linksList {
+  padding-left: 20px;
+  margin: 10px 0;
+  list-style-type: disc; /* Utiliser des puces pour la liste */
+}
+.simpleBlock {
+  border: 1px solid #000;
+  background-color: #000;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  transform: scale(1);
+  font-size: 200px; /* Taille de police par défaut */
+  line-height: 1; /* Empêche le line-height de limiter la taille */
+  padding: 0; /* Supprime le padding qui pourrait limiter l'espace */
+  overflow: visible; /* Permet au texte de déborder si nécessaire */
+  word-break: break-word; /* Gère les mots longs */
+}
+
+.simpleBlock:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  z-index: 10;
+}
+
+.simpleBlockResponsive {
+  max-width: 100%;
+  width: 100%;
+  font-size: 60px !important; /* Taille de police réduite pour les appareils mobiles */
+}
+
+/* Effet de mise en évidence temporaire lors du scroll */
+.highlightedBloc {
+  animation: highlightEffect 2s;
+}
+
+@keyframes highlightEffect {
+  0% {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0);
+  }
+  25% {
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.5);
+  }
+  75% {
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0);
+  }
+}
+
+/* Version mobile */
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .linkItem {
+    margin: 5px 0;
+  }
+}

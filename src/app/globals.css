@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Mr+Bedfort&display=swap");
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* Empêche le défilement horizontal */
+  width: 100%;
+  max-width: 100%;
+}
+
+body {
+  background: #fff;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  position: relative;
+  z-index: 0;
+  font-family: "arial", sans-serif;
+  overflow-x: hidden; /* Empêche le défilement horizontal */
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+body::before {
+  content: "The Guru Artistic";
+  font-family: "Mr Bedfort", cursive, sans-serif;
+  font-size: 5rem;
+  color: #230d06; /* couleur visible */
+  opacity: 0.15; /* Un peu plus foncé pour plus de visibilité */
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Ajout d'une règle mobile spécifique */
+@media (max-width: 767px) {
+  body::before {
+    font-size: 2.5rem; /* Taille réduite sur mobile */
+    white-space: normal; /* Permet le retour à la ligne */
+    width: 80%; /* Largeur réduite */
+    text-align: center; /* Centrage du texte */
+  }
+}
+
+@media (max-width: 767px) {
+  body::before {
+    content: "The Guru Artistic";
+    font-family: "Mr Bedfort", cursive, sans-serif;
+    font-size: 5rem;
+    color: #230d06; /* couleur visible */
+    opacity: 0.15; /* Un peu plus foncé pour plus de visibilité */
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+/* Reset pour tous les éléments */
+* {
+  box-sizing: border-box;
+}
+
+/* Style pour les conteneurs principaux */
+main {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Style pour empêcher les blocs enfants de déborder */
+div {
+  max-width: 100%;
+}
