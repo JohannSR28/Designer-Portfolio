@@ -94,10 +94,15 @@ const SimpleBlock: React.FC<
     isResponsiveMode: boolean;
   }
 > = ({ id, title, onRef, isResponsiveMode, dimensions, textStyle }) => {
+  // Si on est en mode responsive, on ne rend rien
+  if (isResponsiveMode) {
+    return null;
+  }
+
   const style = {
-    width: isResponsiveMode ? "100%" : dimensions?.width || "200px",
+    width: dimensions?.width || "200px",
     height: dimensions?.height || "auto",
-    fontSize: isResponsiveMode ? "60px" : textStyle?.fontSize || undefined,
+    fontSize: textStyle?.fontSize || undefined,
     fontWeight: textStyle?.fontWeight || "bold",
     fontFamily: textStyle?.fontFamily || "inherit",
     lineHeight: "1",
@@ -107,14 +112,7 @@ const SimpleBlock: React.FC<
   };
 
   return (
-    <div
-      id={id}
-      ref={onRef}
-      className={`${styles.simpleBlock} ${
-        isResponsiveMode ? styles.simpleBlockResponsive : ""
-      }`}
-      style={style}
-    >
+    <div id={id} ref={onRef} className={styles.simpleBlock} style={style}>
       <span>{title}</span>
     </div>
   );
@@ -137,6 +135,11 @@ const PositionedBloc: React.FC<{
   responsiveIndex,
   onHeightChange,
 }) => {
+  // Si c'est un bloc simple et qu'on est en mode responsive, ne pas rendre
+  if (bloc.type === "simple" && isResponsiveMode) {
+    return null;
+  }
+
   const elementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -221,7 +224,7 @@ const BlockContainer: React.FC<{
     });
 
     // Ajouter un peu d'espace en bas
-    setContainerHeight(maxBottom + 50);
+    setContainerHeight(maxBottom + 25);
   };
 
   useEffect(() => {
@@ -241,6 +244,11 @@ const BlockContainer: React.FC<{
     };
   }, []);
 
+  // Filtrer les blocs simples en mode responsive
+  const filteredBlocs = isResponsiveMode
+    ? positionedBlocs.filter((item) => item.bloc.type !== "simple")
+    : positionedBlocs;
+
   return (
     <div
       ref={containerRef}
@@ -251,7 +259,7 @@ const BlockContainer: React.FC<{
         height: isResponsiveMode ? "auto" : `${containerHeight}px`,
       }}
     >
-      {positionedBlocs.map((item, index) => (
+      {filteredBlocs.map((item, index) => (
         <PositionedBloc
           key={item.bloc.id || `bloc-${index}`}
           bloc={item.bloc}
@@ -337,28 +345,11 @@ const SummaryBloc = () => {
     {
       bloc: {
         ...simpleBlocs[0],
-        dimensions: { width: "700px", height: "500px" },
+        dimensions: { width: "700px", height: "300px" },
       },
       position: { x: 50, y: 600 },
     },
   ];
-
-  // Pour visualiser la structure de la page avec les blocs display
-  useEffect(() => {
-    const logBlocDisplay = () => {
-      // Vérifier si les blocs d'affichage existent
-      for (let i = 1; i <= 6; i++) {
-        const displayId = `Bloc${i}d`;
-        const element = document.getElementById(displayId);
-        console.log(
-          `Bloc d'affichage ${displayId}: ${element ? "trouvé" : "non trouvé"}`
-        );
-      }
-    };
-
-    // Exécuter après le rendu
-    setTimeout(logBlocDisplay, 1000);
-  }, []);
 
   return (
     <div className={styles.container}>
